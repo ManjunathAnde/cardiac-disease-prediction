@@ -1,4 +1,4 @@
-# Cardiovascular Disease Prediction
+# ❤️ Cardiovascular Disease Prediction
 
 Machine learning project that predicts cardiovascular disease risk using patient demographic, lifestyle, and clinical measurements.
 
@@ -8,19 +8,15 @@ The model was trained using XGBoost on a cleaned version of the Cardiovascular D
 
 ---
 
-## Repository Structure
+## 📂 Repository Structure
 
 ```text
 ├── CardiacDataEDA.ipynb      # Data cleaning, EDA, scaling, train/test split
 ├── XGBoost_Train.ipynb       # Model training and evaluation
-├── cardio_model.json         # Trained XGBoost model
 ```
 
-**Inference API Repository:** [Backend Repository Link]
 
----
-
-## Dataset
+## 📊 Dataset
 
 **Source:** Cardiovascular Disease Dataset (Kaggle)
 
@@ -48,7 +44,7 @@ The model was trained using XGBoost on a cleaned version of the Cardiovascular D
 
 ---
 
-## Data Cleaning Pipeline
+##  Data Cleaning Pipeline
 
 The following preprocessing steps were applied:
 
@@ -80,7 +76,7 @@ The following preprocessing steps were applied:
 
 ---
 
-## Exploratory Data Analysis Findings
+## 🔍 Exploratory Data Analysis Findings
 
 Key observations from the dataset:
 
@@ -99,7 +95,7 @@ No class balancing techniques were required.
 
 ---
 
-## Train-Test Split
+## 📈 Train-Test Split
 
 | Split    | Records |
 | -------- | ------- |
@@ -113,7 +109,7 @@ Data was exported to AWS S3 for model training.
 
 ---
 
-## Model Training
+##  Model Training
 
 ### Algorithm
 
@@ -131,7 +127,7 @@ Evaluation Metric:
 auc
 ```
 
-### Hyperparameter Search
+### ⚙️ Hyperparameter Search
 
 Grid search evaluated 27 configurations across:
 
@@ -141,7 +137,7 @@ eta             = [0.05, 0.1, 0.2]
 num_boost_round = [50, 100, 200]
 ```
 
-### Best Model
+### 🏆 Best Model
 
 | Parameter       | Value |
 | --------------- | ----- |
@@ -151,7 +147,7 @@ num_boost_round = [50, 100, 200]
 
 ---
 
-## Model Performance
+## 📋 Model Performance
 
 ### Baseline Model
 
@@ -171,7 +167,7 @@ The tuned model significantly reduced overfitting while slightly improving valid
 
 ---
 
-## Classification Performance
+## 🎯 Classification Performance
 
 ### Threshold = 0.4 (Deployment Threshold)
 
@@ -193,35 +189,7 @@ The deployment threshold was set to **0.4** to prioritize recall and reduce miss
 
 ---
 
-## Loading the Model
-
-```python
-import xgboost as xgb
-
-model = xgb.Booster()
-model.load_model("cardio_model.json")
-```
-
-### Feature Mapping
-
-The model was trained using SageMaker-formatted CSV files without headers. Therefore, XGBoost stores feature names internally as:
-
-```text
-1, 2, 3, ..., 11
-```
-
-When creating a DMatrix manually:
-
-```python
-dmatrix = xgb.DMatrix(
-    data,
-    feature_names=[str(i) for i in range(1, 12)]
-)
-```
-
----
-
-## Development Environment
+## ☁️ Development Environment
 
 Training was performed in AWS SageMaker Studio using:
 
